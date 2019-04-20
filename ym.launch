@@ -1,0 +1,21 @@
+<launch>
+  <node 
+    name="youbot_move" 
+    pkg="youbot_move" 
+    type="youbot_move" 
+    respawn="true"
+    output="screen" />
+   
+	<node name="hokuyo" pkg="hokuyo_node" type="hokuyo_node" respawn="true" output="screen">
+  
+    <!-- Starts up faster, but timestamps will be inaccurate. --> 
+    <param name="calibrate_time" type="bool" value="true"/> 
+    
+    <!-- Set the port to connect to here -->
+    <param name="port" type="string" value="/dev/ttyACM0"/> 
+  
+    <param name="intensity" type="bool" value="true"/>
+  </node>
+  
+ <include file="$(find youbot_driver_ros_interface)/launch/youbot_driver.launch"/>
+</launch>
